@@ -79,8 +79,10 @@ The [Bridge](https://en.wikipedia.org/wiki/Network_bridge) Connection will autom
 ```
 doas nmcli con add type bridge ifname br0
 ```
-Connect the [NIC](https://en.wikipedia.org/wiki/Network_interface_controller) to the [Network Bridge](https://en.wikipedia.org/wiki/Network_bridge)
+Connect the [NIC](https://en.wikipedia.org/wiki/Network_interface_controller) to the [Network Bridge](https://en.wikipedia.org/wiki/Network_bridge).
+
 The on board [NIC](https://en.wikipedia.org/wiki/Network_interface_controller) of the [Raspberry Pi 5 16GB](https://www.raspberrypi.com/products/raspberry-pi-5/) is named ```end0```
+
 You have to replace it with the name of your Network interface 
 
 ```
