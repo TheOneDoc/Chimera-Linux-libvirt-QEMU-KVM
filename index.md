@@ -149,7 +149,7 @@ Start the virtual network end of the [Bridge](https://en.wikipedia.org/wiki/Netw
 doas virsh net-start br0
 ```
 
-Set the Virtual network end of the [Bridge](https://en.wikipedia.org/wiki/Network_bridge) to outostart with [libvirt](https://en.wikipedia.org/wiki/Libvirt) 
+Set the Virtual network end of the [Bridge](https://en.wikipedia.org/wiki/Network_bridge) to autostart with [libvirt](https://en.wikipedia.org/wiki/Libvirt) 
 
 ```
 doas virsh net-autostart br0
