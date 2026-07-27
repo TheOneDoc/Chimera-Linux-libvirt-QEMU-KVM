@@ -71,7 +71,7 @@ as well as their associated [MAC address](https://en.wikipedia.org/wiki/MAC_addr
 ip link show
 ```
 
-#### [NetworkManager](https://en.wikipedia.org/wiki/NetworkManager)
+#### Host side via [NetworkManager](https://en.wikipedia.org/wiki/NetworkManager)
 
 Create a new [Network Bridge](https://en.wikipedia.org/wiki/Network_bridge) interface ```br0``` via [NetworkManager's](https://en.wikipedia.org/wiki/NetworkManager) [nmcli(1)](https://manpages.org/nmcli/1) command.
 
@@ -122,12 +122,12 @@ doas nmcli con show
 doas nmcli con show --active
 ```
 
+
+#### Virtual Network side through [virsh(1)](https://manpages.org/virsh/1)
+
+Create a description for the virtual network end of the [Bridge](https://en.wikipedia.org/wiki/Network_bridge) in [XML](https://en.wikipedia.org/wiki/XML) 
+
 ```
-#### virsh
-
-#Add br0 bridge to KVM/QEMU
-create file /tmp/br0.xml with content:
-
 cat << 'EOF' > /tmp/br0.xml
 <network>
   <name>br0</name>
@@ -135,11 +135,30 @@ cat << 'EOF' > /tmp/br0.xml
   <bridge name="br0" />
 </network>
 EOF
+```
 
-#let's use virsh to enable the bridge on the VM side
+Add the persistent virtual network to [libvirt](https://en.wikipedia.org/wiki/Libvirt) 
+
+```
 doas virsh net-define /tmp/br0.xml
+```
+
+Start the virtual network end of the [Bridge](https://en.wikipedia.org/wiki/Network_bridge) 
+
+```
 doas virsh net-start br0
+```
+
+Set the Virtual network end of the [Bridge](https://en.wikipedia.org/wiki/Network_bridge) to outostart with [libvirt](https://en.wikipedia.org/wiki/Libvirt) 
+
+```
 doas virsh net-autostart br0
-#check if all went well
+```
+
+Check if all went well
+
+```
 doas virsh net-list --all
 ```
+
+Virtual Machines can be created and administrated through e.g.: [virsh(1)](https://manpages.org/virsh/1) or [Virtual Machine Manager](https://en.wikipedia.org/wiki/Virt-manager)
