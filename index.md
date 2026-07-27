@@ -4,7 +4,7 @@
 
 This document will walk you through installing a [libvirt](https://en.wikipedia.org/wiki/Libvirt) environment on top of [Chimera Linux](https://en.wikipedia.org/wiki/Chimera_Linux)
 with support for [QEMU](https://en.wikipedia.org/wiki/QEMU)/[KVM](https://en.wikipedia.org/wiki/Kernel-based_Virtual_Machine) and the configuration of a [Network Bridge](https://en.wikipedia.org/wiki/Network_bridge) to
-connect the [Virtual Machines](https://en.wikipedia.org/wiki/Virtual_machine) to the [LAN](https://en.wikipedia.org/wiki/Local_area_network) through [NetworkManager](https://en.wikipedia.org/wiki/NetworkManager) and [virsh(1)}(https://www.libvirt.org/manpages/virsh.html)
+connect the [Virtual Machines](https://en.wikipedia.org/wiki/Virtual_machine) to the [LAN](https://en.wikipedia.org/wiki/Local_area_network) through [NetworkManager](https://en.wikipedia.org/wiki/NetworkManager) and [virsh(1)](https://manpages.org/virsh/1)
 
 Note: The configuration and usage of Storage Subsystems as well as more advanced Networking setups is out of scope for this guide.
 
