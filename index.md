@@ -11,7 +11,7 @@ Note: The configuration and usage of Storage Subsystems as well as more advanced
 ## Target System
 
 In this example our target system is a [Raspberry Pi 5 16GB](https://www.raspberrypi.com/products/raspberry-pi-5/) [SBC](https://en.wikipedia.org/wiki/Single-board_computer) running 
-- CPU Broadcom BCM2712 2.4GHz quad-core 64-bit [Arm Cortex-A76](https://en.wikipedia.org/wiki/ARM_Cortex-A76)
+- CPU 4 Core Broadcom BCM2712 [Arm Cortex-A76](https://en.wikipedia.org/wiki/ARM_Cortex-A76)
 - Ram 16 GB
 - Drive 1TB NVME SSD
 - System Language EN
@@ -38,6 +38,14 @@ or for [X86-64](https://en.wikipedia.org/wiki/X86-64)
 doas apk add qemu qemu-tools qemu-img qemu-edk2-firmware qemu-system-x86_64 libvirt
 ```
 
+### User configuration
+
+add the user to the kvm group
+
+```
+doas usermod -a -G kvm myusername
+```
+
 ### enable libvirt service [Daemons](https://en.wikipedia.org/wiki/Daemon_(computing))
 
 Please refer to the libvirt [Documentation](https://www.libvirt.org/daemons.html#modular-driver-daemons) to understand the function of a specific [Daemon](https://en.wikipedia.org/wiki/Daemon_(computing))
@@ -50,19 +58,21 @@ for drv in qemu interface network nodedev nwfilter secret storage proxy log
   done
 exit
 ```
+
 ### Bridge configuration
 
-Tipp: The Network interface Names according to the [Predictable Network Naming scheme](https://www.freedesktop.org/software/systemd/man/latest/systemd.net-naming-scheme.html) 
+__Tipp:__ The Network interface Names according to the [Predictable Network Naming scheme](https://www.freedesktop.org/software/systemd/man/latest/systemd.net-naming-scheme.html) 
 as well as their associated [MAC address](https://en.wikipedia.org/wiki/MAC_address) can be seen via the [ip(8)](https://manpages.org/ip/8) command.
-[ip(8)](https://manpages.org/ip/8) is part of the [iproute2](https://en.wikipedia.org/wiki/Iproute2) package
+[ip(8)](https://manpages.org/ip/8) is part of the [iproute2](https://en.wikipedia.org/wiki/Iproute2) package.
 
 ```
 ip link show
 ```
+
 #### [NetworkManager](https://en.wikipedia.org/wiki/NetworkManager)
 
-Create a new [Network Bridge](https://en.wikipedia.org/wiki/Network_bridge) interface ```br0``` via [NetworkManager's](https://en.wikipedia.org/wiki/NetworkManager) [nmcli(1)](https://networkmanager.dev/docs/api/latest/nmcli.html)
-The Bridge Connection will automatically be named ```bridge-br0```
+Create a new [Network Bridge](https://en.wikipedia.org/wiki/Network_bridge) interface ```br0``` via [NetworkManager's](https://en.wikipedia.org/wiki/NetworkManager) [nmcli(1)](https://manpages.org/nmcli/1) command
+The [Bridge](https://en.wikipedia.org/wiki/Network_bridge) Connection will automatically be named ```bridge-br0```
 
 ```
 doas nmcli con add type bridge ifname br0
