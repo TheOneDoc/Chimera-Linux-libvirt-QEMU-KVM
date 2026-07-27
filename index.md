@@ -33,7 +33,8 @@ for installation on configuration of [Chimera Linux](https://chimera-linux.org/)
 doas apk add qemu qemu-tools qemu-img qemu-edk2-firmware u-boot-qemu_arm64 qemu-system-aarch64 libvirt
 ```
 
-or for [X86-64](https://en.wikipedia.org/wiki/X86-64)
+or for [X86-64](https://en.wikipedia.org/wiki/X86-64) hosts
+
 ```
 doas apk add qemu qemu-tools qemu-img qemu-edk2-firmware qemu-system-x86_64 libvirt
 ```
