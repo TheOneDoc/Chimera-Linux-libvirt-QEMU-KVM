@@ -72,7 +72,8 @@ ip link show
 
 #### [NetworkManager](https://en.wikipedia.org/wiki/NetworkManager)
 
-Create a new [Network Bridge](https://en.wikipedia.org/wiki/Network_bridge) interface ```br0``` via [NetworkManager's](https://en.wikipedia.org/wiki/NetworkManager) [nmcli(1)](https://manpages.org/nmcli/1) command
+Create a new [Network Bridge](https://en.wikipedia.org/wiki/Network_bridge) interface ```br0``` via [NetworkManager's](https://en.wikipedia.org/wiki/NetworkManager) [nmcli(1)](https://manpages.org/nmcli/1) command.
+
 The [Bridge](https://en.wikipedia.org/wiki/Network_bridge) Connection will automatically be named ```bridge-br0```
 
 ```
