@@ -132,7 +132,7 @@ cat << 'EOF' > /tmp/br0.xml
 <network>
   <name>br0</name>
   <forward mode="bridge"/>
-  <bridge name="br0" />
+  <bridge name="br0"/>
 </network>
 EOF
 ```
