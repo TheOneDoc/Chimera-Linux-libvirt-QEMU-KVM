@@ -64,6 +64,7 @@ exit
 
 __Tipp:__ The Network interface Names according to the [Predictable Network Naming scheme](https://www.freedesktop.org/software/systemd/man/latest/systemd.net-naming-scheme.html) 
 as well as their associated [MAC address](https://en.wikipedia.org/wiki/MAC_address) can be seen via the [ip(8)](https://manpages.org/ip/8) command.
+
 [ip(8)](https://manpages.org/ip/8) is part of the [iproute2](https://en.wikipedia.org/wiki/Iproute2) package.
 
 ```
@@ -74,16 +75,17 @@ ip link show
 
 Create a new [Network Bridge](https://en.wikipedia.org/wiki/Network_bridge) interface ```br0``` via [NetworkManager's](https://en.wikipedia.org/wiki/NetworkManager) [nmcli(1)](https://manpages.org/nmcli/1) command.
 
-The [Bridge](https://en.wikipedia.org/wiki/Network_bridge) Connection will automatically be named ```bridge-br0```
+The [Bridge](https://en.wikipedia.org/wiki/Network_bridge) Connection will automatically be named ```bridge-br0```.
 
 ```
 doas nmcli con add type bridge ifname br0
 ```
+
 Connect the [NIC](https://en.wikipedia.org/wiki/Network_interface_controller) to the [Network Bridge](https://en.wikipedia.org/wiki/Network_bridge).
 
 The on board [NIC](https://en.wikipedia.org/wiki/Network_interface_controller) of the [Raspberry Pi 5 16GB](https://www.raspberrypi.com/products/raspberry-pi-5/) is named ```end0```
 
-You have to replace it with the name of your Network interface 
+You have to replace it with the name of your Network interface. 
 
 ```
 doas nmcli con add type bridge-slave ifname end0 master br0
@@ -95,15 +97,18 @@ disable [Spanning Tree Protocol](https://en.wikipedia.org/wiki/Spanning_Tree_Pro
 doas nmcli con modify br0 bridge.stp no
 ```
 
-Assign the [MAC address](https://en.wikipedia.org/wiki/MAC_address) of the [NIC](https://en.wikipedia.org/wiki/Network_interface_controller) ```end0``` to the [Network Bridge](https://en.wikipedia.org/wiki/Network_bridge) ```br0```
-This makes sure that the bridge gets the same IP as was assigned to the [NIC](https://en.wikipedia.org/wiki/Network_interface_controller) via e.g. [Dynamic Host Configuration Protocol](https://en.wikipedia.org/wiki/Dynamic_Host_Configuration_Protocol)
+Assign the [MAC address](https://en.wikipedia.org/wiki/MAC_address) of the [NIC](https://en.wikipedia.org/wiki/Network_interface_controller) ```end0``` to the [Network Bridge](https://en.wikipedia.org/wiki/Network_bridge) ```br0```.
+
+This makes sure that the bridge gets the same IP as was assigned to the [NIC](https://en.wikipedia.org/wiki/Network_interface_controller) via e.g. [Dynamic Host Configuration Protocol](https://en.wikipedia.org/wiki/Dynamic_Host_Configuration_Protocol).
 
 ```
 doas nmcli con modify br0 ethernet.cloned-mac-address 88:a2:9e:23:5e:d1
 ```
 
-diasble the [NIC](https://en.wikipedia.org/wiki/Network_interface_controller) connection ```Wired connection 1``` and enable the bridge connection ```bridge-br0```
-Note: ```Wired connection 1``` is the default name for the first NetworkManager connction to a [LAN](https://en.wikipedia.org/wiki/Local_area_network) 
+diasble the [NIC](https://en.wikipedia.org/wiki/Network_interface_controller) connection ```Wired connection 1``` and enable the bridge connection ```bridge-br0```.
+
+Note: ```Wired connection 1``` is the default name for the first NetworkManager connction to a [LAN](https://en.wikipedia.org/wiki/Local_area_network).
+
 __Attention:__ Any ssh sessions on this [NIC](https://en.wikipedia.org/wiki/Network_interface_controller) connection will be dropped.
 
 ```
